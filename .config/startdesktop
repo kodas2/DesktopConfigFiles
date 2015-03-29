@@ -1,0 +1,19 @@
+#!/bin/bash
+
+xsetroot -cursor_name left_ptr &
+hsetroot -center ~/.config/wallpaper/wallpaper.png &
+
+xset dpms 2000 2000 2000 #Set dpms timeouts (In seconds)
+xset s 2000 2000 #Set screensaver timeouts
+
+mouse_id=$(xinput | grep Mouse | cut -d '=' -f 2 | cut -d '[' -f 1)
+#Accel profile property id
+prop_id=$(xinput --list-props $mouse_id | grep "Accel Profile" | cut -d '(' -f 2 | cut -d ')' -f 1)
+
+xinput --set-prop $mouse_id $prop_id -1 #Disable mouse acceleration
+
+setxkbmap dvorak
+
+compton -c -b &# --config ~/.config/compton.conf -b &
+
+exec i3
