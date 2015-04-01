@@ -1,0 +1,2 @@
+include "/usr/share/themes/Nimix/gtk-2.0/gtkrc"
+gtk-icon-theme-name = "Numix-Circle"
